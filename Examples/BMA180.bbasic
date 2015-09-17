@@ -1,0 +1,15 @@
+1 //
+2 // BMA 180 chip using SPI interface
+3 // https://github.com/JBtje/BlueBasic/wiki/Example:-SPI---BMA180
+4 //
+10 PINMODE P0(2) INPUT PULLUP 
+30 PINMODE P0(4) OUTPUT 
+40 SPI MASTER 0, 3, MSB 1
+50 DIM U(10)
+60 U(0) = 0X80
+70 SPI TRANSFER P0(4) U
+80 PRINT "ID accel sensor: ", U(1)
+90 PRINT "version: ", U(2)
+110 PRINT "Acc-x ", ((U(4) << 6) + (U(3) >> 2))
+120 PRINT "Acc-y ", ((U(6) << 6) + (U(5) >> 2))
+130 PRINT "Acc-z ", ((U(8) << 6) + (U(7) >> 2))
